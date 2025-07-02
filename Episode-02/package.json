@@ -1,0 +1,14 @@
+{
+  "name": "episode-02",
+  "version": "1.0.0",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Sai Kumar Theppa",
+  "license": "ISC",
+  "description": "Namaste React Episode-02",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}
