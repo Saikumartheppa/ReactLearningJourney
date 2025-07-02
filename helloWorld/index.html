@@ -12,8 +12,11 @@
      </div> -->
 
     <!-- Creating Hellow world using JS -->
-    <!-- <script src="script.js"></script> -->
-     <div id="root"></div>
+    <h1>Top of the Root</h1>
+    <div id="root">
+      <h1>Hey this is Heading H1</h1>
+    </div>
+    <h1>Below of the Root</h1>
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -22,13 +25,6 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
-    <script>
-      const heading = React.createElement("h1" , {} , "Hello World Namaste React");
-      const root = ReactDOM.createRoot(document.getElementById("root"));
-      
-
-      root.render(heading);
-
-    </script>
+    <script src="App.js"></script>
   </body>
 </html>
