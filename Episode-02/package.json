@@ -2,7 +2,9 @@
   "name": "episode-02",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start":"npx parcel index.html",
+    "build": "npx parcel build index.html"
   },
   "author": "Sai Kumar Theppa",
   "license": "ISC",
