@@ -40,6 +40,36 @@ const HeadingComponent3 = () => {
     </h1>
   );
 };
+
+// Whatever we writing in React at the end of the day it is JavaScript.
+
+const Title = () => {
+  return <h1>Namaste react</h1>;
+};
+
+// You have a simple component that returns JSX only
+
+// const ContainerComp = () => (
+//     <div>
+//       <Title></Title>
+//       <Title />
+//       {Title()}
+//     </div>
+//   );
+
+
+// You need to run logic before returning, like variables, conditions, etc.
+
+const ContainerComp = () => {
+  return (
+    <div>
+      <Title></Title>
+      <Title />
+      {Title()}
+    </div>
+  );
+};
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(heading);
-root.render(<HeadingComponent />);
+// root.render(<HeadingComponent />);
+root.render(<ContainerComp />);
