@@ -18,14 +18,19 @@ const heading = (
 //React Functional Component & Component Composition as well
 const HeadingComponent = () => (
   <div className="container">
+    {"Piece of JavaScript"}
+    {heading}
+    <h1>{400 + 500}</h1>
     <HeadingComponent2 />
-    <HeadingComponent3/>
     <h1 className="heading1">First React Functional Component</h1>
   </div>
 );
 
 const HeadingComponent2 = () => (
-  <h1 className="heading2">Second React Functional Component</h1>
+  <div className="container2">
+    <HeadingComponent3 />
+    <h1 className="heading2">Second React Functional Component</h1>
+  </div>
 );
 
 const HeadingComponent3 = () => {
