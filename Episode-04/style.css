@@ -23,3 +23,24 @@
     padding: 10px;
     cursor: pointer;
 }
+.bodyContainer{
+    padding: 20px;
+}
+.restaurantContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.restuarantCard:hover{
+    cursor: pointer;
+    background-color: #c7c7c7;
+    transition: all ease-in;
+    border: 1px solid rgb(32, 28, 28);
+}
+.restuarantCard{
+    width: 200px;
+    margin: 5px;
+    padding: 5px;
+}
+.restuarantCard img{
+    width: 90%;
+}
