@@ -643,6 +643,7 @@ const Body = () => {
       <Search />
       <div className="restaurantContainer">
         {restaurantList.map((restuarant) => (
+          //  not using Key <<<<<< Using Index as Key <<<<<< Using uniqueId as a key
           <RestaurantCard key={restuarant.data.id} resData={restuarant} />
         ))}
       </div>
