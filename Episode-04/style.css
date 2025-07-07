@@ -1,4 +1,8 @@
 
+*{
+    padding: 0;
+    margin: 0;
+}
 .logo{
     height: 75px;
     width: 170px;
@@ -33,14 +37,20 @@
 .restuarantCard:hover{
     cursor: pointer;
     background-color: #c7c7c7;
-    transition: all ease-in;
+    transition: all ease-in 0.7ms;
     border: 1px solid rgb(32, 28, 28);
 }
 .restuarantCard{
     width: 200px;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 5px;
 }
 .restuarantCard img{
-    width: 90%;
+    border-radius: 5px;
+    width: 100%;
+    height: 220px;
+}
+.restuarantCard > h3, h4{
+    margin : 5px;
 }

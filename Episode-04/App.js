@@ -15,7 +15,7 @@ const restaurantList = [
       totalRatingsString: "500+ ratings",
       cloudinaryImageId: "bdcd233971b7c81bf77e1fa4471280eb",
       imageUrl:
-        "https://images.pexels.com/photos/10599426/pexels-photo-10599426.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/20679433/pexels-photo-20679433.jpeg?_gl=1*1o9qlg5*_ga*MjgyNDcwMzgwLjE3NDIxMDcwNTk.*_ga_8JE65Q40S6*czE3NTE4NTU4MzgkbzUkZzEkdDE3NTE4NTU4NjUkajMzJGwwJGgw",
       cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
       avgRating: "3.8",
       costForTwoString: "₹400 FOR TWO",
@@ -249,7 +249,7 @@ const restaurantList = [
       totalRatingsString: "100+ ratings",
       cloudinaryImageId: "rxsvhvcdip9dbfdijzk9",
       imageUrl:
-        "https://images.pexels.com/photos/1056553/pexels-photo-1056553.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.jdmagicbox.com/v2/comp/bangalore/x2/080pxx80.xx80.171130145051.r7x2/catalogue/al-daaz-hsr-layout-bangalore-north-indian-restaurants-606drhhzb4.jpg",
       cuisines: [
         "American",
         "Arabian",
@@ -391,7 +391,7 @@ const restaurantList = [
       totalRatingsString: "1000+ ratings",
       cloudinaryImageId: "placeholder_for_subway",
       imageUrl:
-        "https://images.pexels.com/photos/106349/pexels-photo-106349.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/2025-01/subway_restaurant.jpeg",
       cuisines: ["Salads", "Snacks", "Healthy Food", "Fast Food"],
       avgRating: "4.0",
       costForTwoString: "₹400 FOR TWO",
