@@ -30,6 +30,15 @@
 .bodyContainer{
     padding: 20px;
 }
+.search-filter {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    gap:20px
+}
+.filter-btn{
+    cursor: pointer;
+}
 .restaurantContainer{
     display: flex;
     flex-wrap: wrap;
@@ -53,3 +62,5 @@
 .restuarantCard > h3, h4{
     margin : 5px;
 }
+
+
