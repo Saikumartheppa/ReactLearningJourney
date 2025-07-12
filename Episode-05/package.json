@@ -1,0 +1,22 @@
+{
+  "name": "episode-05",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html"
+  },
+  "author": "Sai Kumar Theppa",
+  "license": "ISC",
+  "description": "Namaste React Episode-04",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
