@@ -9,9 +9,6 @@ const Body = () => {
   // const setListOfRestuarants = arr[1];
 
   const [listOfRestuarants, setListOfRestuarants] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
@@ -22,6 +19,10 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // Conditional Rendering
   if (listOfRestuarants.length === 0) {
