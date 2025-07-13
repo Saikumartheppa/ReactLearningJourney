@@ -1,15 +1,32 @@
 import Search from "./Search";
 import RestaurantCard from "./RestuarantCard";
-import restaurantList from "../utils/mockData";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 const Body = () => {
-    // useState returns an Array . this is same we've used destructuring.
-    // const arr = useState(restaurantList);
-    // const listOfRestuarants = arr[0];
-    // const setListOfRestuarants = arr[1];
+  // useState returns an Array . this is same we've used destructuring.
+  // const arr = useState(restaurantList);
+  // const listOfRestuarants = arr[0];
+  // const setListOfRestuarants = arr[1];
 
-    const [listOfRestuarants, setListOfRestuarants] = useState(restaurantList);
+  const [listOfRestuarants, setListOfRestuarants] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    // optional chaining
+    setListOfRestuarants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+
+  // Conditional Rendering
+  if (listOfRestuarants.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <div className="bodyContainer">
       <div className="search-filter">
@@ -19,7 +36,9 @@ const Body = () => {
           onClick={() => {
             console.log("Button CLicked");
             // Top Rated Restuarants Filter Logic
-            const filteredListOfRestuarants = listOfRestuarants.filter((restuarant) =>  restuarant.data.avgRating > 4);
+            const filteredListOfRestuarants = listOfRestuarants
+              .filter((restuarant) => restuarant.info.avgRating > 4)
+              .sort((a, b) => a.info.avgRating - b.info.avgRating);
             setListOfRestuarants(filteredListOfRestuarants);
           }}
         >
@@ -29,7 +48,7 @@ const Body = () => {
       <div className="restaurantContainer">
         {listOfRestuarants.map((restuarant) => (
           //  not using Key <<<<<< Using Index as Key <<<<<< Using uniqueId as a key
-          <RestaurantCard key={restuarant.data.id} resData={restuarant} />
+          <RestaurantCard key={restuarant?.info?.id} resData={restuarant} />
         ))}
       </div>
     </div>

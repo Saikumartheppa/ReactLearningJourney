@@ -45,11 +45,12 @@
 }
 .restuarantCard:hover{
     cursor: pointer;
-    background-color: #aaa8a8;
-    transition: all ease-in 0.3s;
+    transform: scale(0.95, 0.95);
+    transform-origin: center center;
+    transition: 0.1s ease-in;
 }
 .restuarantCard{
-    width: 200px;
+    width: 200px !important;
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
@@ -57,10 +58,20 @@
 .restuarantCard img{
     border-radius: 5px;
     width: 100%;
-    height: 220px;
+    height: 220px !important;
+    border: none !important;
 }
 .restuarantCard > h3, h4{
     margin : 5px;
 }
-
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-card{
+    margin: 15px;
+    width: 200px;
+    height:270px;
+    background-color: #f0f0f0;
+}
 
