@@ -1,6 +1,8 @@
-import RestaurantCard from "./RestuarantCard";
+import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import { RESTAURANT_LIST_API } from "../utils/constants";
 const Body = () => {
   // useState returns an Array . this is same we've used destructuring.
   // const arr = useState(restaurantList);
@@ -12,9 +14,7 @@ const Body = () => {
     useState([]);
   const [searchInput, setSearchInput] = useState("");
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RESTAURANT_LIST_API);
     const json = await data.json();
     // optional chaining
     setListOfRestuarants(
@@ -78,7 +78,12 @@ const Body = () => {
       <div className="restaurantContainer">
         {filteredListOfRestuarantsByName.map((restuarant) => (
           //  not using Key <<<<<< Using Index as Key <<<<<< Using uniqueId as a key
-          <RestaurantCard key={restuarant?.info?.id} resData={restuarant} />
+          <Link
+            key={restuarant?.info?.id}
+            to={"/restaurants/" + restuarant?.info?.id}
+          >
+            <RestaurantCard resData={restuarant} />
+          </Link>
         ))}
       </div>
     </div>
