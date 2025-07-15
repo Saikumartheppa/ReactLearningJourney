@@ -1,4 +1,5 @@
 import { LOGO_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -9,9 +10,9 @@ const NavBar = () => {
         </div>
         <div className="items">
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact US</li>
+            <Link to={"/"}><li>Home</li> </Link>
+           <Link to="/about"><li>About</li></Link>
+            <Link to={"/contact"}><li>Contact US</li></Link>
             <li>Cart</li>
           </ul>
         </div>
