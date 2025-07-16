@@ -44,7 +44,7 @@ const RestaurantMenu = () => {
            <h4> {item?.card?.info?.ratings?.aggregatedRating?.rating}</h4>
            <h4> {item?.card?.info?.description}</h4>
           </li>
-        ))};
+        ))}
       </ul>
     </div>
   )

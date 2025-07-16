@@ -10,7 +10,7 @@ const Body = () => {
   // const setListOfRestuarants = arr[1];
 
   const [listOfRestuarants, setListOfRestuarants] = useState([]);
-  const [filteredListOfRestuarantsByName, setFilteredListOfRestuarantsByName] =
+  const [filteredListOfRestuarantsByName, setFilteredListOfRestuarants] =
     useState([]);
   const [searchInput, setSearchInput] = useState("");
   const fetchData = async () => {
@@ -20,7 +20,7 @@ const Body = () => {
     setListOfRestuarants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilteredListOfRestuarantsByName(
+    setFilteredListOfRestuarants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -54,7 +54,7 @@ const Body = () => {
                   ?.toLowerCase()
                   .includes(searchInput.toLowerCase())
             );
-            setFilteredListOfRestuarantsByName(filteredListOfResByName);
+            setFilteredListOfRestuarants(filteredListOfResByName);
           }}
           disabled={searchInput.trim().length < 3}
         >
@@ -69,7 +69,7 @@ const Body = () => {
             const filteredListOfRestuarants = listOfRestuarants
               .filter((restuarant) => restuarant.info.avgRating > 4)
               .sort((a, b) => a.info.avgRating - b.info.avgRating);
-            setListOfRestuarants(filteredListOfRestuarants);
+            setFilteredListOfRestuarants(filteredListOfRestuarants);
           }}
         >
           Top Rated Restaurants
