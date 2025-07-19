@@ -16,6 +16,9 @@ class User extends Component {
     this.setState({
       userInfo: json
     })
+    setInterval(()=>{
+      console.log("Set Interval");
+    }, 1000)
     console.log("Child component did mount");
   }
   componentDidUpdate(){

@@ -68,7 +68,7 @@ const Body = () => {
             // Top Rated Restuarants Filter Logic
             const filteredListOfRestuarants = listOfRestuarants
               .filter((restuarant) => restuarant.info.avgRating > 4)
-              .sort((a, b) => a.info.avgRating - b.info.avgRating);
+              .sort((a, b) => b.info.avgRating - a.info.avgRating);
             setFilteredListOfRestuarants(filteredListOfRestuarants);
           }}
         >
