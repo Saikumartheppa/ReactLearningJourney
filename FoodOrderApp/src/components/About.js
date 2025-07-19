@@ -5,7 +5,7 @@ class About extends React.Component {
     super(props);
     console.log("Parent Constructor");
   }
-  componentDidMount() {
+  async componentDidMount() {
     console.log("Parent component did mount");
   }
   render() {
@@ -13,7 +13,7 @@ class About extends React.Component {
     return (
       <div>
         <h1>About</h1>
-        <User userName={"HarveySpecter"} location={"Florida"}/>
+        <User />
       </div>
     );
   }

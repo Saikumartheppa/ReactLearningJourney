@@ -17,7 +17,7 @@ const RestaurantMenu = () => {
   };
 
 
-  if (resInfo === null) {
+  if (!resInfo) {
     return <Shimmer />;
   }
 
@@ -27,7 +27,7 @@ const RestaurantMenu = () => {
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
-  return itemCards === null ? <Shimmer /> : (
+  return !itemCards ? <Shimmer /> : (
     <div>
       <h1>{name}</h1>
       <h2>
