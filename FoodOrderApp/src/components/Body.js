@@ -2,35 +2,24 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import { RESTAURANT_LIST_API } from "../utils/constants";
+import useRestaurantList from "../utils/useRestaurantList";
+
 const Body = () => {
   // useState returns an Array . this is same we've used destructuring.
   // const arr = useState(restaurantList);
   // const listOfRestuarants = arr[0];
   // const setListOfRestuarants = arr[1];
 
-  const [listOfRestuarants, setListOfRestuarants] = useState([]);
+  const listOfRestuarants = useRestaurantList();
   const [filteredListOfRestuarantsByName, setFilteredListOfRestuarants] =
     useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const fetchData = async () => {
-    const data = await fetch(RESTAURANT_LIST_API);
-    const json = await data.json();
-    // optional chaining
-    setListOfRestuarants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredListOfRestuarants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  
+  useEffect(()=>{
+     setFilteredListOfRestuarants(listOfRestuarants)
+  }, [listOfRestuarants])
   // Conditional Rendering
-  if (listOfRestuarants.length === 0) {
+  if (!listOfRestuarants.length) {
     return <Shimmer />;
   }
   return (
