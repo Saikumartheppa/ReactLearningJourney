@@ -1,13 +1,20 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import NavBar from "./components/NavBar";
 import Body from "./components/Body";
-import About from "./components/About";
+// import About from "./components/About";
 import ErrorPage from "./components/ErrorPage";
 import Contact from "./components/Contact";
-import { createBrowserRouter, RouterProvider , Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { lazy, Suspense } from "react";
 
+// Chunking
+// Code Splitting
+// Dynamic Bundling
+// lazy Loading
+// on demand loading
+// dynamix imoprt
+const About = lazy(() => import("./components/About"));
 const AppLayOut = () => {
   console.log("App is Running");
   return (
@@ -28,17 +35,21 @@ const appRouter = createBrowserRouter([
         path: "/",
       },
       {
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <About />
+          </Suspense>
+        ),
         path: "/about",
       },
       {
         element: <Contact />,
         path: "/contact",
       },
-       {
+      {
         element: <RestaurantMenu />,
         path: "/restaurants/:resId",
-      }
+      },
     ],
     errorElement: <ErrorPage />,
   },

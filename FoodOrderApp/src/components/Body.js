@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurantList from "../utils/useRestaurantList";
-
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   // useState returns an Array . this is same we've used destructuring.
   // const arr = useState(restaurantList);
@@ -14,10 +14,17 @@ const Body = () => {
   const [filteredListOfRestuarantsByName, setFilteredListOfRestuarants] =
     useState([]);
   const [searchInput, setSearchInput] = useState("");
-  
-  useEffect(()=>{
-     setFilteredListOfRestuarants(listOfRestuarants)
-  }, [listOfRestuarants])
+
+  useEffect(() => {
+    setFilteredListOfRestuarants(listOfRestuarants);
+  }, [listOfRestuarants]);
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) {
+    return (
+      <h1>Looks like you're offline!! Please check your internet connection</h1>
+    );
+  }
+
   // Conditional Rendering
   if (!listOfRestuarants.length) {
     return <Shimmer />;
@@ -47,7 +54,6 @@ const Body = () => {
           }}
           disabled={searchInput.trim().length < 3}
         >
-          {" "}
           Search
         </button>
         <button
