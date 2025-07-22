@@ -11,10 +11,15 @@ const useRestaurantList = () => {
     const json = await data.json();
     // optional chaining
     setListOfRestuarants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map( (restaurant , index) =>{
+        return {
+          ...restaurant,
+          promoted: index % 3 === 0 ? true : false
+        }
+      })
     );
   };
-
+   
   return listOfRestuarants;
 };
 export default useRestaurantList;

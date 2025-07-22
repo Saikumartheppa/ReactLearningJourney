@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard , {withPromotedLabel} from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -11,9 +11,11 @@ const Body = () => {
   // const setListOfRestuarants = arr[1];
 
   const listOfRestuarants = useRestaurantList();
+  console.log(listOfRestuarants);
   const [filteredListOfRestuarantsByName, setFilteredListOfRestuarants] =
     useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     setFilteredListOfRestuarants(listOfRestuarants);
@@ -26,7 +28,7 @@ const Body = () => {
   }
 
   // Conditional Rendering
-  if (!listOfRestuarants.length) {
+  if (!listOfRestuarants?.length) {
     return <Shimmer />;
   }
   return (
@@ -76,8 +78,9 @@ const Body = () => {
           <Link
             key={restuarant?.info?.id}
             to={"/restaurants/" + restuarant?.info?.id}
-          >
-            <RestaurantCard resData={restuarant} />
+          >{
+            restuarant?.promoted ? <RestaurantCardPromoted resData={restuarant} /> : <RestaurantCard resData={restuarant} />
+          }  
           </Link>
         ))}
       </div>
