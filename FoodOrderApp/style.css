@@ -124,6 +124,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 .category-title{
     font-weight: 600;
@@ -132,21 +133,39 @@ a{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 20px;
     border-bottom: rgb(226, 224, 224) solid 1px;
 }
+.item-container:last-child{
+    border: none;
+}
 .item{
+    max-width: 35vw;
+    overflow-x: hidden;
     padding: 10px 0;
 }
 .item-description p{
     font-size: smaller;
 }
 .item-image{
-    width: 150px;
-    height: 120px;
+    width: 140px;
+    height: 130px;
     margin: 10px 0;
 }
 .item-image img{
     width: 100%;
     height: 100%;
     border-radius: 10px;
+}
+.add-btn button{
+    position: absolute;
+    background-color: #ffffff;
+    padding: 8px 30px;
+    border: 1px solid rgb(248, 245, 245);
+    border-radius: 5px;
+    font-weight: 600;
+    color: rgb(27, 166, 114);
+    cursor: pointer;
+    font-size: 16px;
+    margin: 120px 22px;
 }
