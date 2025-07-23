@@ -1,4 +1,4 @@
-import RestaurantCard , {withPromotedLabel} from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -11,7 +11,6 @@ const Body = () => {
   // const setListOfRestuarants = arr[1];
 
   const listOfRestuarants = useRestaurantList();
-  console.log(listOfRestuarants);
   const [filteredListOfRestuarantsByName, setFilteredListOfRestuarants] =
     useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -42,22 +41,22 @@ const Body = () => {
               setSearchInput(e.target.value);
             }}
           ></input>
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredListOfResByName = listOfRestuarants.filter(
+                (restuarant) =>
+                  restuarant?.info?.name
+                    ?.toLowerCase()
+                    .includes(searchInput.toLowerCase())
+              );
+              setFilteredListOfRestuarants(filteredListOfResByName);
+            }}
+            disabled={searchInput.trim().length < 3}
+          >
+            Search
+          </button>
         </div>
-        <button
-          className="search-btn"
-          onClick={() => {
-            const filteredListOfResByName = listOfRestuarants.filter(
-              (restuarant) =>
-                restuarant?.info?.name
-                  ?.toLowerCase()
-                  .includes(searchInput.toLowerCase())
-            );
-            setFilteredListOfRestuarants(filteredListOfResByName);
-          }}
-          disabled={searchInput.trim().length < 3}
-        >
-          Search
-        </button>
         <button
           className="filter-btn"
           onClick={() => {
@@ -78,9 +77,12 @@ const Body = () => {
           <Link
             key={restuarant?.info?.id}
             to={"/restaurants/" + restuarant?.info?.id}
-          >{
-            restuarant?.promoted ? <RestaurantCardPromoted resData={restuarant} /> : <RestaurantCard resData={restuarant} />
-          }  
+          >
+            {restuarant?.promoted ? (
+              <RestaurantCardPromoted resData={restuarant} />
+            ) : (
+              <RestaurantCard resData={restuarant} />
+            )}
           </Link>
         ))}
       </div>
