@@ -6,7 +6,7 @@ import { useState } from "react";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
-  const [showIndex , setShowIndex] = useState(null);
+  const [showIndex , setShowIndex] = useState(0);
   if (!resInfo) {
     return <Shimmer />;
   }
@@ -37,8 +37,8 @@ const RestaurantMenu = () => {
             key={category?.card?.card?.categoryId}
             data={category?.card?.card
             }
-            showItems= {showIndex === index ? true : false}
-            setShowIndex={()=> setShowIndex(index)}
+            showItems= {showIndex === index}
+            setShowIndex={()=> setShowIndex(prev => prev === index ? null : index)}
           />
         ))}
       </div>
