@@ -107,12 +107,17 @@ a{
 .restaurant-details  h1{
    margin: 15px 0;
 }
+.rotate,
 .downArrow{
     width:15px;
     height: 15px;
+    background-image: url("./src/assests/downArrow.svg");
+    transform: rotate(180deg);
+    transition: all ease-in 0.3s;
+    background-repeat: no-repeat;
 }
-.downArrow  svg{
-    width: fit-content;
+.rotate{
+    transform: rotate(360deg);
 }
 .restaurant-categories{
     margin: 10px 0;
