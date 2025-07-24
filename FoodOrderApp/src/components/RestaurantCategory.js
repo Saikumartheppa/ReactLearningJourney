@@ -1,10 +1,9 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = (data) => {
-  const[showItems, setShowItems] = useState(null);
+const RestaurantCategory = ({data , showItems , setShowIndex}) => {
   const handleClick = () =>{
-    setShowItems(!showItems);
+    setShowIndex();
   }
   return (
     <div>
@@ -12,7 +11,7 @@ const RestaurantCategory = (data) => {
         <div className="restaurant-categories">
             <div className="category" onClick={handleClick}>
           <div className="category-title">
-            {data?.data?.title}({data?.data?.itemCards?.length})
+            {data?.itemCards?.title}({data?.itemCards?.length})
           </div>
           <div className="downArrow">
             <svg
@@ -33,7 +32,7 @@ const RestaurantCategory = (data) => {
           </div>
           </div>
           <div>
-           {showItems && <ItemList items={data?.data?.itemCards}/> }
+           {showItems && <ItemList items={data?.itemCards}/> }
           </div>
         </div>
       </div>

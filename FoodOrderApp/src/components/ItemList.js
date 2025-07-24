@@ -2,7 +2,7 @@ import { IMAGE_URL } from "../utils/constants";
 const ItemList = ({ items }) => {
   return (
     <div>
-      {items.map((item) => (
+      {items?.map((item) => (
         <div key={item?.card?.info?.id} className="item-container"> 
           <div className="item">
             <div className="item-name">{item?.card?.info?.name}</div>
