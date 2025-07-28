@@ -13,7 +13,7 @@ const RestaurantCategory = ({data , showItems , setShowIndex}) => {
           <div className="category-title">
             {data?.title}({data?.itemCards?.length})
           </div>
-          <div className={`downArrow ${showItems ? "rotate" : ""}`}>
+          <div className={`downArrow ${!showItems ? "rotate" : ""}` }>
           </div>
           </div>
           <div>
