@@ -60,7 +60,6 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            console.log("Button CLicked");
             // Top Rated Restuarants Filter Logic
             const filteredListOfRestuarants = listOfRestuarants
               .filter((restuarant) => restuarant.info.avgRating > 4)

@@ -8,7 +8,7 @@ class User extends Component {
         location : "Dummy Location"
       }
     };
-    console.log("Child Constructor");
+    // console.log("Child Constructor");
   }
   async componentDidMount() {
     const data = await fetch("https://api.github.com/users/Saikumartheppa");
@@ -17,19 +17,19 @@ class User extends Component {
       userInfo: json
     })
     setInterval(()=>{
-      console.log("Set Interval");
+      // console.log("Set Interval");
     }, 1000)
-    console.log("Child component did mount");
+    // console.log("Child component did mount");
   }
   componentDidUpdate(){
-    console.log("Component Updated");
+    // console.log("Component Updated");
   }
   componentWillUnmount(){
-    console.log("Component UnMounted");
+    // console.log("Component UnMounted");
   }
   render() {
     const { name, location , avatar_url } = this?.state?.userInfo;
-    console.log("Child render");
+    // console.log("Child render");
     return (
       <div>
         <img src={avatar_url}></img>

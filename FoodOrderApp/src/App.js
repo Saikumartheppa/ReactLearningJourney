@@ -7,7 +7,8 @@ import Contact from "./components/Contact";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy, Suspense } from "react";
-
+import { useState, useEffect } from "react";
+import UserContext from "./utils/UserContext";
 // Chunking
 // Code Splitting
 // Dynamic Bundling
@@ -17,11 +18,22 @@ import { lazy, Suspense } from "react";
 const About = lazy(() => import("./components/About"));
 const AppLayOut = () => {
   console.log("App is Running");
+  const[userName , setUserName] = useState(null);
+  useEffect(() => {
+    const data = {
+      name : "John Doe"
+    }
+    setUserName(data.name);
+  }, [])
   return (
+   <UserContext.Provider value={{loggedInUser: userName}}>
     <div className="appContainer">
+      <UserContext.Provider value={{loggedInUser: "Akshay Kumar"}}>
       <NavBar />
+      </UserContext.Provider>
       <Outlet />
     </div>
+    </UserContext.Provider>
   );
 };
 
