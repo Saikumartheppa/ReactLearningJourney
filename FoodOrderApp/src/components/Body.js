@@ -1,9 +1,10 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect  , useContext} from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurantList from "../utils/useRestaurantList";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 const Body = () => {
   // useState returns an Array . this is same we've used destructuring.
   // const arr = useState(restaurantList);
@@ -15,7 +16,7 @@ const Body = () => {
     useState([]);
   const [searchInput, setSearchInput] = useState("");
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
-
+  
   useEffect(() => {
     setFilteredListOfRestuarants(listOfRestuarants);
   }, [listOfRestuarants]);
@@ -25,6 +26,7 @@ const Body = () => {
       <h1>Looks like you're offline!! Please check your internet connection</h1>
     );
   }
+  const { loggedInUser , setUserName } = useContext(UserContext);
 
   // Conditional Rendering
   if (!listOfRestuarants?.length) {
@@ -69,6 +71,11 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <div className="userName">
+          <label>UserName</label>
+          <input value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}></input>
+        </div>
       </div>
       <div className="restaurantContainer">
         {filteredListOfRestuarantsByName.map((restuarant) => (
