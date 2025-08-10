@@ -9,6 +9,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy, Suspense } from "react";
 import { useState, useEffect } from "react";
 import UserContext from "./utils/UserContext";
+import {Provider} from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 // Chunking
 // Code Splitting
 // Dynamic Bundling
@@ -26,12 +29,14 @@ const AppLayOut = () => {
     setUserName(data.name);
   }, [])
   return (
+    <Provider store={appStore} >
    <UserContext.Provider value={{loggedInUser: userName , setUserName}}>
     <div className="appContainer">
       <NavBar />
       <Outlet />
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -59,6 +64,10 @@ const appRouter = createBrowserRouter([
       {
         element: <RestaurantMenu />,
         path: "/restaurants/:resId",
+      },
+      {
+        element: <Cart />,
+        path: "/cart",
       },
     ],
     errorElement: <ErrorPage />,

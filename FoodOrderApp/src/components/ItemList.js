@@ -1,5 +1,11 @@
+import { useDispatch } from "react-redux";
 import { IMAGE_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+      dispatch(addItem(item));
+  }
   return (
     <div>
       {items?.map((item) => (
@@ -13,7 +19,7 @@ const ItemList = ({ items }) => {
           </div>
           <div>
             <div className="add-btn">
-              <button>ADD</button>
+              <button onClick={() => handleAddItem(item)}>ADD</button>
             </div>
             <div className="item-image">
                 <img src={IMAGE_URL + item?.card?.info?.imageId}/>

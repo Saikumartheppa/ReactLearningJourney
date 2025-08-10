@@ -31,6 +31,9 @@ a{
     padding: 10px;
     cursor: pointer;
 }
+.cart{
+    font-weight: 700;
+}
 .bodyContainer{
     padding: 20px;
 }
@@ -175,7 +178,49 @@ a{
     font-size: 16px;
     margin: 120px 22px;
 }
-/* .userName input{
-  outline: none;
-  margin: 5px;
+/* .add-btn button:hover{
+    background-color: rgba(2, 6, 12, 0.15);
 } */
+.cart-container h1{
+    margin: 5px 0px;
+}
+.cart-container{
+    width: 60vw;
+    margin: auto 20vw;
+}
+.empty-cart{
+    text-align: center;
+}
+.clear-cart button{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer; 
+}
+.clear-cart button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.empty-cart *{
+  margin-top: 10px;
+}
+.empty-cart-img img{
+    width: 40%;
+}
+.empty-cart  h2{
+    color: rgba(2, 6, 12, .8);
+}
+.empty-cart  h4{
+    color: rgba(2, 6, 12, .6);
+}
+.restaurants-near-you  button{
+   background-color: #ff5200;
+   color: white;
+   border: none;
+   padding: 10px 18px;
+   font-weight: 700;
+   font-size: 16px;
+   cursor: pointer;
+}
