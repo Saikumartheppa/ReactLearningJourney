@@ -7,10 +7,23 @@ const cartSlice = createSlice({
     },
     reducers : {
         addItem : (state , action) => {
-            state.items.push(action.payload);
+            const item = action.payload;
+            const existingItem = state.items.find(i => i?.card?.info?.id === item?.card?.info?.id);
+            if(existingItem){
+                existingItem.quantity += 1;
+            }else{
+                state.items.push({...item , quantity : 1});
+            }
         },
-        removeItem : (state) => {
-            state.items.pop();
+        removeItem : (state , action) => {
+            const id = action.payload;
+            const existingItem = state.items.find(item => item?.card?.info?.id === id);
+            if(existingItem){
+                existingItem.quantity -= 1;
+                if(existingItem.quantity <= 0){
+                    state.items = state.items.filter(item => item?.card?.info?.id !== id);
+                }
+            }
         },
         // originalState : {items : ["biryani"]}
         clearCart : (state) => {

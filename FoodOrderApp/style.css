@@ -166,18 +166,39 @@ a{
     height: 100%;
     border-radius: 10px;
 }
-.add-btn button{
+.add-btn button,
+.add-remove{
     position: absolute;
     background-color: #ffffff;
-    padding: 8px 30px;
     border: 1px solid rgb(248, 245, 245);
     border-radius: 5px;
     font-weight: 600;
     color: rgb(27, 166, 114);
     cursor: pointer;
     font-size: 16px;
-    margin: 120px 22px;
+    transition: ease-in 0.2s;
 }
+.add-btn button{
+    margin: 120px 22px;
+    padding: 8px 30px;
+}
+.add-remove{
+    width: 90px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 120px 23px;
+    padding: 6px 0px;
+    display: flex;
+}
+.add-remove button{
+    color: rgb(27, 166, 114);
+    background-color: #ffffff;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
 /* .add-btn button:hover{
     background-color: rgba(2, 6, 12, 0.15);
 } */
