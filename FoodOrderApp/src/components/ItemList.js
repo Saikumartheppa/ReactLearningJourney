@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IMAGE_URL } from "../utils/constants";
 import { addItem, removeItem } from "../utils/cartSlice";
+import "../../style.css";
 const ItemList = ({ items }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
@@ -16,10 +17,10 @@ const ItemList = ({ items }) => {
   };
   return (
     <div>
+      console.log(items);
       {items?.map((item) => {
         const id = item?.card?.info?.id;
         const quantity = getQuantity(id);
-         console.log(quantity);
         return (
           <div key={item?.card?.info?.id} className="item-container">
             <div className="item">

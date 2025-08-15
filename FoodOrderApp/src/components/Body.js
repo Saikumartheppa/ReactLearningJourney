@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useRestaurantList from "../utils/useRestaurantList";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import '../../style.css';
 const Body = () => {
   // useState returns an Array . this is same we've used destructuring.
   // const arr = useState(restaurantList);

@@ -5,3 +5,5 @@ export const IMAGE_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl
 export const RESTAURANT_LIST_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0895&lng=80.2739&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 export const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0895&lng=80.2739&restaurantId=";
+
+export const CART_EMPTY_IMAGE = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0";

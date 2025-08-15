@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import "../../style.css";
 
 const NavBar = () => {
   const {loggedInUser} = useContext(UserContext);

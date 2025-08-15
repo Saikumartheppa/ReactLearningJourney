@@ -1,3 +1,4 @@
+import "../../style.css";
 const Shimmer = ()=>{
     const shimmerArray = new Array(20).fill(0);
 

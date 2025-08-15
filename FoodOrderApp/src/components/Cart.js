@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./ItemList";
 import { clearCart } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
+import { CART_EMPTY_IMAGE } from "../utils/constants";
+import "../../style.css";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -24,7 +26,7 @@ const Cart = () => {
           <div className="empty-cart-img">
             <img
               src={
-                "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
+                CART_EMPTY_IMAGE
               }
               alt="Empty-image"
             />
@@ -35,7 +37,7 @@ const Cart = () => {
           </div>
           <div className="restaurants-near-you">
             <Link to={"/"}>
-              <button>SEE RESTAURANTS NEAR YOU</button>{" "}
+              <button>SEE RESTAURANTS NEAR YOU</button>
             </Link>
           </div>
         </div>

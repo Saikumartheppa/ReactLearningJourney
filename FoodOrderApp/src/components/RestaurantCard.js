@@ -1,5 +1,5 @@
 import { IMAGE_URL } from "../utils/constants";
-
+import "../../style.css";
 const RestaurantCard = (props) => {
   const { resData } = props;
   const { cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla} =
