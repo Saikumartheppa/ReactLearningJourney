@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce with Cancel and Flush</title>
+</head>
+<body>
+    <input placeholder="Search" onkeyup="debouncedFunction(this.value)"></input>
+    <button onclick="debouncedFunction.cancel()" style="cursor: pointer;">Cancel</button>
+    <button onclick="debouncedFunction.flush()" style="cursor: pointer;">Flush</button>
+    <script src="debounceCancelandFlush.js"></script>
+</body>
+</html>
