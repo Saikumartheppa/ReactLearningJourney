@@ -1,35 +1,85 @@
 import { useState } from "react";
+import AccordianItem from "./AccordianItem";
 import styles from "./style.module.scss";
-import DOWNARROW_ICON from "../../assets/downArrow.svg";
+
+// Basic 
+
+// const Accordian = (props) => {
+//   const { items } = props;
+//   const [showIndex, setShowIndex] = useState(0);
+//   const handleToggle = (index) => {
+//     setShowIndex(prev => prev == index ? null : index)
+//   }
+//   return (!items || !items.length) ? "No Available Items" :  (
+//     <div className={styles.accordian}>
+//       {items.map((item, index) => {
+//         return <AccordianItem key={item?.index} item={item} showItem={showIndex == index} setShowIndex={()=> handleToggle(index)} />
+//       })}
+//     </div>
+//   );
+// };
+
+
+
+// To show all items by default
+// const Accordian = ({ items }) => {
+  //   const [openIndexes, setOpenIndexes] = useState(
+    //     items?.map((_, index) => index) || []
+    //   );
+
+    //   const handleToggle = (index) => {
+//     setOpenIndexes((prev) => {
+  //       if (prev.includes(index)) {
+//         return prev.filter((i) => i !== index);
+//       }
+
+//       return [...prev, index];
+//     });
+//   };
+
+//   if (!items?.length) {
+  //     return <p>No Available Items</p>;
+  //   }
+  
+  //   return (
+    //     <div className={styles.accordian}>
+    //       {items.map((item, index) => (
+//         <AccordianItem
+//           key={item.id ?? index}
+//           item={item}
+//           showItem={openIndexes.includes(index)}
+//           onToggle={() => handleToggle(index)}
+//         />
+//       ))}
+//     </div>
+//   );
+// };
+
 const Accordian = (props) => {
-  const { items } = props;
-  const [showIndex, setShowIndex] = useState(null);
+  const { items , allowMultipleItemsOpen , defaultOpenItems} = props;
+  console.log(defaultOpenItems);
+  const [openIndexes, setOpenIndexes] = useState((defaultOpenItems || []).filter(
+        index => index >= 0 && index < items.length
+    ));
   const handleToggle = (index) => {
-    setShowIndex(showIndex == index ? null : index);
-  };
+    setOpenIndexes((prev) => {
+    if (allowMultipleItemsOpen) {
+      return prev.includes(index)
+        ? prev.filter(i => i !== index)
+        : [...prev, index];
+    }
+     return prev.includes(index)
+            ? []
+            : [index];
+  });
+  }
   return (!items || !items.length) ? "No Available Items" :  (
     <div className={styles.accordian}>
-      {items?.map((item, index) => {
-        return (
-          <div key={item.title} className={styles.accordian__item}>
-            <button
-              className={styles.accordian__title}
-              onClick={() => handleToggle(index)}
-            >
-              {item?.title}
-              <img
-                className={`${styles["arrow"]} ${showIndex === index ? styles["upArrow"] : styles["downArrow"]}`}
-                src={DOWNARROW_ICON}
-                alt="arrow"
-              />
-            </button>
-            {showIndex === index && (
-              <p className={styles["accordian__content"]}>{item?.content}</p>
-            )}
-          </div>
-        );
+      {items.map((item, index) => {
+        return <AccordianItem key={item?.id} item={item} showItem={openIndexes.includes(index)} onToggle={()=> handleToggle(index)} />
       })}
     </div>
   );
 };
+ 
 export default Accordian;
