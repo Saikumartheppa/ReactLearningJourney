@@ -57,7 +57,6 @@ import styles from "./style.module.scss";
 
 const Accordian = (props) => {
   const { items , allowMultipleItemsOpen , defaultOpenItems} = props;
-  console.log(defaultOpenItems);
   const [openIndexes, setOpenIndexes] = useState((defaultOpenItems || []).filter(
         index => index >= 0 && index < items.length
     ));
