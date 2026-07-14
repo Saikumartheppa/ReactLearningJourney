@@ -1,3 +1,4 @@
+import { Profile , Settings , Interests } from "./tabForm"
 export const ACCORDIAN_ITEMS = [
   {
     title: "JavaScript Basics",
@@ -20,3 +21,18 @@ export const ACCORDIAN_ITEMS = [
     id:4
   },
 ];
+// Added config for tabs , so in future if we want to add new tab we can simply add the new obj to this list
+export const TABS = [
+  {
+    name : "Profile",
+    component : Profile,
+  },
+   {
+    name : "Settings",
+    component : Settings,
+  },
+   {
+    name : "Interests",
+    component : Interests,
+  },
+]
