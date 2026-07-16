@@ -3,6 +3,8 @@ import styles from "./style.module.scss";
 import { TABS as tabs } from "../../components";
 const TabForm = () => {
   const [activeTab , setActiveTab] = useState(0);
+  const [data , setData] = useState({
+  });
   const ActiveTabComponent = tabs[activeTab].component;
   return (
     <div className={styles["tabform"]}>
@@ -12,7 +14,7 @@ const TabForm = () => {
         ))}
       </div>
       <div className={styles["tabform__body"]}>
-        <ActiveTabComponent/>
+        <ActiveTabComponent data={data} setData={setData}/>
       </div>
     </div>
   );

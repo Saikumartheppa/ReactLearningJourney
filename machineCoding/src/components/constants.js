@@ -27,12 +27,12 @@ export const TABS = [
     name : "Profile",
     component : Profile,
   },
+  {
+   name : "Interests",
+   component : Interests,
+ },
    {
     name : "Settings",
     component : Settings,
-  },
-   {
-    name : "Interests",
-    component : Interests,
   },
 ]
