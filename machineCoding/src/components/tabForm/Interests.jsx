@@ -2,10 +2,13 @@ export const Interests = ({data , setData}) => {
     const {interests=[]} = data;
     const handleOnChange = (e) => {
        const {name , checked} = e.target;
-       setData((prev) => ({
+       setData((prev) => {
+       const currentInterests = prev.interests || [];
+       return {
         ...prev,
-        interests: checked ? [...prev.interests , name] : prev.interests?.filter((i) => i !== name)
-       }))
+        interests: checked ? [...currentInterests, name] : currentInterests.filter((i) => i !== name)
+       }
+    })
     }
     return (<div>
         <div>
