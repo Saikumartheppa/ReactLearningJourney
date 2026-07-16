@@ -1,3 +1,7 @@
+export const validateSettings = () => {
+    const err = {};
+    return err;
+}
 export const Settings = ({data , setData}) => {
     const{theme} = data;
     const handleDataChange = (e) => {
@@ -12,6 +16,7 @@ export const Settings = ({data , setData}) => {
                 <input type="radio" name="dark" checked={theme === 'dark'} onChange={handleDataChange}/>
                 Dark
             </label>
+            
         </div>
          <div>
             <label>

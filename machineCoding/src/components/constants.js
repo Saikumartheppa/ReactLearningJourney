@@ -1,4 +1,4 @@
-import { Profile , Settings , Interests } from "./tabForm"
+import { Profile , Settings , Interests , validateProfile , validateInterests , validateSettings } from "./tabForm"
 export const ACCORDIAN_ITEMS = [
   {
     title: "JavaScript Basics",
@@ -26,13 +26,16 @@ export const TABS = [
   {
     name : "Profile",
     component : Profile,
+    validate:validateProfile
   },
   {
    name : "Interests",
    component : Interests,
+   validate: validateInterests,
  },
    {
     name : "Settings",
     component : Settings,
+    validate : validateSettings
   },
 ]
