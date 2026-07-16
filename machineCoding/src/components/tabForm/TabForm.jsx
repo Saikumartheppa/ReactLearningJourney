@@ -6,6 +6,17 @@ const TabForm = () => {
   const [data , setData] = useState({
   });
   const ActiveTabComponent = tabs[activeTab].component;
+  const handlePrevClick = () => {
+    setActiveTab((prev) => prev - 1)
+  };
+  const handleNextClick = () => {
+    setActiveTab((prev) => {
+       return prev + 1;
+    })
+  };
+  const handleSubmitClick = () => {
+    console.log("Submit Data");
+  };
   return (
     <div className={styles["tabform"]}>
       <div className={styles["tabform__container"]}>
@@ -15,6 +26,11 @@ const TabForm = () => {
       </div>
       <div className={styles["tabform__body"]}>
         <ActiveTabComponent data={data} setData={setData}/>
+      </div>
+      <div className={styles["tabform__btn-container"]}>
+        <button className={styles["tabform__btn"]} disabled={activeTab === 0} onClick={handlePrevClick}>Prev</button>
+        <button className={styles["tabform__btn"]} disabled={activeTab === tabs.length - 1} onClick={handleNextClick}>Next</button>
+        <button className={styles["tabform__btn"]} disabled={activeTab !==  tabs.length - 1} onClick={handleSubmitClick} >Submit</button>
       </div>
     </div>
   );
