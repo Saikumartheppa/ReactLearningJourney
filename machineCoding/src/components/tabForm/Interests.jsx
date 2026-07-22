@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 export const validateInterests = (data) => {
   const errors = {};
-  if (data.interests?.length === 0) {
+  if (!data.interests?.length) {
     errors.interests = "Select at least one interest";
   }
   return errors;
