@@ -7,6 +7,7 @@ const TabForm = () => {
   });
   const ActiveTabComponent = tabs[activeTab].component;
   const [errors, setErrors] = useState({});
+  const allTabsValid = tabs.every((tab) => Object.keys(tab.validate(data)).length === 0);
   const validate = () => {
      const error =  tabs[activeTab].validate(data);
      setErrors(error);
@@ -38,7 +39,7 @@ const TabForm = () => {
       <div className={styles["tabform__btn-container"]}>
         <button className={styles["tabform__btn"]} disabled={activeTab === 0} onClick={handlePrevClick}>Prev</button>
         <button className={styles["tabform__btn"]} disabled={activeTab === tabs.length - 1} onClick={handleNextClick}>Next</button>
-        <button className={styles["tabform__btn"]} disabled={activeTab !==  tabs.length - 1} onClick={handleSubmitClick} >Submit</button>
+        <button className={styles["tabform__btn"]} disabled={activeTab !==  tabs.length - 1 || !allTabsValid} onClick={handleSubmitClick} >Submit</button>
       </div>
     </div>
   );
