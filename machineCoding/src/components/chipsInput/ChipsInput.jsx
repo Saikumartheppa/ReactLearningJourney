@@ -18,6 +18,10 @@ const ChipsInput = () => {
       setChips((prev) => [...prev, trimmedValue]);
       setInputText("");
     } 
+    // Follow up Question 1 :  Delete last chip on backspace if input is empty
+    else if (e.key === "Backspace" && !inputText && chips.length > 0) {
+      setChips((prev) => prev.slice(0, -1));
+    }
   };
 
   const handleDeleteChip = (indexToDelete) => {
