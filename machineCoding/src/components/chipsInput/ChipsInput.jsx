@@ -5,6 +5,9 @@ const ChipsInput = () => {
   const [inputText, setInputText] = useState("");
   const [chips, setChips] = useState([]);
   const [selectedChipIndex , setSelectedChipIndex] = useState(null);
+  const deleteChip = (indexToDelete) => {
+     setChips((prev) => prev.filter((_, index) => index !== indexToDelete));
+  }
   const handleInputChange = (e) => {
     setInputText(e.target.value);
     if(selectedChipIndex !== null){
@@ -31,14 +34,14 @@ const ChipsInput = () => {
         if(selectedChipIndex === null){
             setSelectedChipIndex(chips.length - 1);
         }else{
-            setChips((prev) => prev.filter((_, index) => index !== selectedChipIndex))
+            deleteChip(selectedChipIndex);
             setSelectedChipIndex(null); 
         }
     }
    };
 
   const handleDeleteChip = (indexToDelete) => {
-    setChips((prev) => prev.filter((_, index) => index !== indexToDelete));
+    deleteChip(indexToDelete);
   };
 
   return (
