@@ -1,0 +1,51 @@
+.chips-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 500px;
+  margin: 20px auto;
+
+  &:focus-within {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+
+  &__delete-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: #ff0000;
+    }
+  }
+
+  &__field {
+    flex-grow: 1;
+    min-width: 120px;
+    border: none;
+    outline: none;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+}
