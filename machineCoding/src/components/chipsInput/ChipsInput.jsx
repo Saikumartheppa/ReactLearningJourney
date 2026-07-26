@@ -5,34 +5,38 @@ const ChipsInput = () => {
   const [inputText, setInputText] = useState("");
   const [chips, setChips] = useState([]);
   const [selectedChipIndex, setSelectedChipIndex] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editingValue, setEditingValue] = useState("");
   const separators = [",", " ", ";"];
 
   const deleteChip = (indexToDelete) => {
     setChips((prev) => prev.filter((_, index) => index !== indexToDelete));
   };
   const addChips = (values) => {
-  setChips((prev) => {
-    const seen = new Set(prev);
+    setChips((prev) => {
+      const seen = new Set(prev);
 
-    const newChips = values.filter((value) => {
-      const chip = value.trim();
+      const newChips = values
+        .filter((value) => {
+          const chip = value.trim();
 
-      if (!chip || seen.has(chip)) {
-        return false;
-      }
+          if (!chip || seen.has(chip)) {
+            return false;
+          }
 
-      seen.add(chip);
-      return true;
-    }).map(chip => chip.trim());
+          seen.add(chip);
+          return true;
+        })
+        .map((chip) => chip.trim());
 
-    return [...prev, ...newChips];
-  });
+      return [...prev, ...newChips];
+    });
 
-  setInputText("");
-};
+    setInputText("");
+  };
   const handleInputChange = (e) => {
     setInputText(e.target.value);
-    if(selectedChipIndex !== null){
+    if (selectedChipIndex !== null) {
       setSelectedChipIndex(null);
     }
   };
@@ -71,9 +75,16 @@ const ChipsInput = () => {
       }
     }
   };
-  
+
   const handleDeleteChip = (indexToDelete) => {
     deleteChip(indexToDelete);
+    if (editingIndex === null) return;
+    if (editingIndex === indexToDelete) {
+      setEditingIndex(null);
+      setEditingValue("");
+    } else if (indexToDelete < editingIndex) {
+      setEditingIndex((prev) => prev - 1);
+    }
   };
   // follow up 4 : If user copy & paste's values from note pad or some where.
   const handlePaste = (e) => {
@@ -84,7 +95,39 @@ const ChipsInput = () => {
 
     addChips(values);
   };
+  const handleEdit = (indexToBeEdited) => {
+    setEditingIndex(indexToBeEdited);
+    setEditingValue(chips[indexToBeEdited]);
+  };
+  // follow up 5 : Double clicking on a chip results editable option
+  const saveChip = (e) => {
+    if (e.key === "Enter") {
+      const value = editingValue.trim();
 
+      if (!value) {
+        setEditingIndex(null);
+        return;
+      }
+
+      setChips((prev) => {
+        // Ignore the chip currently being edited
+        const duplicate = prev.some(
+          (chip, index) => index !== editingIndex && chip === value,
+        );
+
+        if (duplicate) {
+          return prev;
+        }
+
+        return prev.map((chip, index) =>
+          index === editingIndex ? value : chip,
+        );
+      });
+
+      setEditingIndex(null);
+      setEditingValue("");
+    }
+  };
   return (
     <div className={styles["chips-input"]}>
       {chips?.map((chip, index) => (
@@ -92,7 +135,21 @@ const ChipsInput = () => {
           key={`${chip}-${index}`}
           className={`${styles["chips-input__chip"]} ${selectedChipIndex === index ? styles["chips-input__chip--selected"] : ""}`}
         >
-          <span>{chip}</span>
+          {editingIndex === index ? (
+            <input
+              style={{
+                outline: "none",
+                border: "none",
+                backgroundColor: "#e0e0e0",
+              }}
+              value={editingValue}
+              autoFocus
+              onChange={(e) => setEditingValue(e.target.value)}
+              onKeyDown={saveChip}
+            />
+          ) : (
+            <span onDoubleClick={() => handleEdit(index)}>{chip}</span>
+          )}
           <button
             type="button"
             className={styles["chips-input__delete-btn"]}
