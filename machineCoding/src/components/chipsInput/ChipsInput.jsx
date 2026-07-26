@@ -39,6 +39,10 @@ const ChipsInput = () => {
     if (selectedChipIndex !== null) {
       setSelectedChipIndex(null);
     }
+    if(editingIndex !== null){
+       setEditingIndex(null);
+       setEditingValue('');
+    }
   };
 
   const handleKeyDown = (e) => {
