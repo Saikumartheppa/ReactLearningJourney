@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 const AutoComplete = () => {
-  const [searchText, setSeachText] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [cacheSuggestions, setCacheSuggestions] = useState({});
   const fetchData = async () => {
+    if(!searchText.trim()) return;
     if (cacheSuggestions[searchText]) {
       setSuggestions(cacheSuggestions[searchText]);
     } else {
@@ -33,10 +34,14 @@ const AutoComplete = () => {
       <input
         className={styles["auto-complete__input-field"]}
         type="text"
+        value={searchText}
         placeholder="Search..."
-        onChange={(e) => setSeachText(e.target.value)}
+        onChange={(e) => setSearchText(e.target.value)}
         onFocus={() => setShowSuggestions(true)}
-        onBlur={() => setShowSuggestions(false)}
+        onBlur={() => {
+          setShowSuggestions(false);
+          setSearchText("");
+        }}
       ></input>
       {showSuggestions && (
         <div className={styles["auto-complete__suggestions-container"]}>
