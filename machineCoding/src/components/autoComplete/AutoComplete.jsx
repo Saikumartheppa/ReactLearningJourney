@@ -4,16 +4,28 @@ const AutoComplete = () => {
   const [searchText, setSeachText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [cacheSuggestions, setCacheSuggestions] = useState({});
   const fetchData = async () => {
-    const response = await fetch(
-      `https://dummyjson.com/recipes/search?q=${searchText}`,
-    );
-    const data = await response.json();
-    setSuggestions(data?.recipes);
-    console.log(data.recipes);
+    if (cacheSuggestions[searchText]) {
+      setSuggestions(cacheSuggestions[searchText]);
+    } else {
+      const response = await fetch(
+        `https://dummyjson.com/recipes/search?q=${searchText}`,
+      );
+      const data = await response.json();
+      setSuggestions(data?.recipes);
+      setCacheSuggestions((prev) => {
+        return { ...prev, [searchText]: data?.recipes };
+      });
+    }
   };
   useEffect(() => {
-    fetchData();
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 300);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [searchText]);
   return (
     <div className={styles["auto-complete"]}>
@@ -40,7 +52,9 @@ const AutoComplete = () => {
               );
             })
           ) : (
-            <span>No Results Available.Please try with different keyword!!!!</span>
+            <span>
+              No Results Available.Please try with different keyword!!!!
+            </span>
           )}
         </div>
       )}
