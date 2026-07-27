@@ -1,13 +1,13 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
-.auto-complete{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin: 20px 0px;
-   &__input-field{
+.auto-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0px;
+  &__input-field {
     max-width: 500px;
     padding: 5px 10px;
     margin: 10px 0px;
@@ -16,12 +16,12 @@
     outline: none;
     border: 1px solid #ccc;
     background-color: rgb(253, 252, 252);
-    &:focus{
-         border-color: #0066cc;
-         box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+    &:focus {
+      border-color: #0066cc;
+      box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
     }
-   }
-   &__suggestions-container{
+  }
+  &__suggestions-container {
     height: 500px;
     max-width: 500px;
     width: 400px;
@@ -32,13 +32,16 @@
     border-radius: 10px;
     max-height: fit-content;
     overflow-y: scroll;
-   }
-   &__suggestion{
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &__suggestion {
     padding: 5px 0px;
     cursor: pointer;
-    &:hover{
-        background-color: rgb(126, 113, 113);
-        border-radius: 10px;
+    &:hover {
+      background-color: rgb(126, 113, 113);
+      border-radius: 10px;
     }
-   }
+  }
 }
