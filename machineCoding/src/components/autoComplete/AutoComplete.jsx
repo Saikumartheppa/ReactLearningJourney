@@ -29,7 +29,6 @@ const AutoComplete = () => {
   const [isLoading, setIsLoading] = useState(false);
   const handleSelect = (suggestion) => {
      setSearchText(suggestion.name);
-     setShowSuggestions(false);
   }
   const fetchData = async () => {
     const trimmedSearchValue = searchText.trim();
