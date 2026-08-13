@@ -1,0 +1,22 @@
+.otp-container{
+    text-align: center;
+    margin: 20px auto;
+    &__heading{
+        margin: 10px 0px;
+    }
+    &__input{
+        width: 50px;
+        height: 50px;
+        font-size: 40px;
+        margin: 0px 5px;
+        text-align: center;
+        /* Firefox */
+        -moz-appearance: textfield;
+        appearance: textfield;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+           -webkit-appearance: none;
+           margin: 0;
+        }
+    }
+}

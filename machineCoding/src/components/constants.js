@@ -39,3 +39,4 @@ export const TABS = [
     validate : validateSettings
   },
 ]
+export const OTP_INPUT_DIGITS = 6;
