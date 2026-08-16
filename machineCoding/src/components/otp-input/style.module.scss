@@ -13,6 +13,13 @@
         /* Firefox */
         -moz-appearance: textfield;
         appearance: textfield;
+        &--disable{
+            pointer-events: none;
+            opacity: 0.4;
+            &:focus-within{
+                outline: none;
+            }
+        }
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
            -webkit-appearance: none;

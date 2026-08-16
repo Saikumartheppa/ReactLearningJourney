@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./style.module.scss";
-import { OTP_INPUT_DIGITS as otpInputDigits } from "../constants";
-const OTPInput = () => {
-  const [inputArr, setInputArr] = useState(new Array(otpInputDigits).fill(""));
+const OTPInput = ({otpDigits}) => {
+  const [inputArr, setInputArr] = useState(new Array(otpDigits).fill(""));
+  const [isSubmitting , setIsSubmitting] = useState(false);
   const refArr = useRef([]);
+  const checkOTPComplete = (otpInputArr) => {
+     if(otpInputArr.every((input) => input !== "")){
+        handleOTPComplete?.(otpInputArr.join(""));
+     };
+  };
   const isDigit = (char) => {
     return char >= "0" && char <= "9";
   };
@@ -13,6 +18,14 @@ const OTPInput = () => {
       .join("");
     return filteredText;
   };
+  const handleOTPComplete = (otp) => {
+    console.log("OTP : " , otp)
+    setIsSubmitting(true);
+    // api call
+    setTimeout(() =>{
+      setIsSubmitting(false);
+    }, 1000)
+  }
   const handleOnChange = (value, index) => {
     if (value && !isDigit(value)) {
       return;
@@ -20,6 +33,7 @@ const OTPInput = () => {
     const newArr = [...inputArr];
     newArr[index] = value.slice(-1);
     setInputArr(newArr);
+    checkOTPComplete(newArr);
     value && refArr.current[index + 1]?.focus();
   };
   const handleOnKeyDown = (e, index) => {
@@ -27,18 +41,19 @@ const OTPInput = () => {
       refArr.current[index - 1]?.focus();
     }
   };
-  const handleOnPaste = (e , startIndex) => {
+  const handleOnPaste = (e, startIndex) => {
     e.preventDefault();
     const pastedText = e.clipboardData.getData("text").trim();
     const digits = filterOnlyDigits(pastedText);
     if (!digits) return;
     const newArr = [...inputArr];
     const availableSlots = inputArr.length - startIndex;
-    const digitsToPaste = digits.slice(0 , availableSlots);
-    digitsToPaste.split("").forEach((digit , index) => {
+    const digitsToPaste = digits.slice(0, availableSlots);
+    digitsToPaste.split("").forEach((digit, index) => {
       newArr[startIndex + index] = digit;
-    })
+    });
     setInputArr(newArr);
+    checkOTPComplete(newArr);
     const nextIndex = startIndex + digitsToPaste.length;
     if (nextIndex < inputArr.length) {
       refArr.current[nextIndex]?.focus();
@@ -55,16 +70,17 @@ const OTPInput = () => {
       {inputArr.map((input, index) => {
         return (
           <input
-            className={styles["otp-container__input"]}
+            className={`${styles["otp-container__input"]} ${isSubmitting ? styles["otp-container__input--disable"] : ""}`}
             key={index}
             type="text"
             inputMode="numeric"
             maxLength={1}
+            disabled={isSubmitting}
             value={input}
             ref={(input) => (refArr.current[index] = input)}
-            onChange={(e) => handleOnChange(e.target.value, index)}
+            onChange={(e) =>   handleOnChange(e.target.value, index)}
             onKeyDown={(e) => handleOnKeyDown(e, index)}
-            onPaste={(e) => handleOnPaste(e , index)}
+            onPaste={(e) => handleOnPaste(e, index)}
           />
         );
       })}
