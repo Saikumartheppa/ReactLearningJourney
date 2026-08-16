@@ -1,13 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./style.module.scss";
-const OTPInput = ({otpDigits}) => {
+const OTPInput = ({ otpDigits }) => {
   const [inputArr, setInputArr] = useState(new Array(otpDigits).fill(""));
-  const [isSubmitting , setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [otpValidationError, setOtpValidationError] = useState("");
   const refArr = useRef([]);
+  const clearOTP = () => {
+    setInputArr(new Array(otpDigits).fill(""));
+  };
+  const handleOTPComplete = async (otp) => {
+    try {
+      setIsSubmitting(true);
+      setOtpValidationError("");
+      const response = await fetch("https://dummyjson.com/tests");
+      if (!response.ok) {
+        throw new Error("OTP validation failed");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      setOtpValidationError(error.message);
+      clearOTP();
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const checkOTPComplete = (otpInputArr) => {
-     if(otpInputArr.every((input) => input !== "")){
-        handleOTPComplete?.(otpInputArr.join(""));
-     };
+    if (otpInputArr.every((input) => input !== "")) {
+      handleOTPComplete?.(otpInputArr.join(""));
+    }
   };
   const isDigit = (char) => {
     return char >= "0" && char <= "9";
@@ -18,14 +39,6 @@ const OTPInput = ({otpDigits}) => {
       .join("");
     return filteredText;
   };
-  const handleOTPComplete = (otp) => {
-    console.log("OTP : " , otp)
-    setIsSubmitting(true);
-    // api call
-    setTimeout(() =>{
-      setIsSubmitting(false);
-    }, 1000)
-  }
   const handleOnChange = (value, index) => {
     if (value && !isDigit(value)) {
       return;
@@ -62,6 +75,11 @@ const OTPInput = ({otpDigits}) => {
     }
   };
   useEffect(() => {
+    if (!isSubmitting && otpValidationError) {
+      refArr.current[0]?.focus();
+    }
+  }, [isSubmitting, otpValidationError]);
+  useEffect(() => {
     refArr.current[0]?.focus();
   }, []);
   return (
@@ -78,12 +96,15 @@ const OTPInput = ({otpDigits}) => {
             disabled={isSubmitting}
             value={input}
             ref={(input) => (refArr.current[index] = input)}
-            onChange={(e) =>   handleOnChange(e.target.value, index)}
+            onChange={(e) => handleOnChange(e.target.value, index)}
             onKeyDown={(e) => handleOnKeyDown(e, index)}
             onPaste={(e) => handleOnPaste(e, index)}
           />
         );
       })}
+      {otpValidationError && (
+        <p className={styles["otp-container__error"]}>{otpValidationError}</p>
+      )}
     </div>
   );
 };

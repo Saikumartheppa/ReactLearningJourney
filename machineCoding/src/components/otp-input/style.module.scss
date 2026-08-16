@@ -26,4 +26,9 @@
            margin: 0;
         }
     }
+    &__error{
+        color: red;
+        margin-top: 10px;
+        font-size: 20px;
+    }
 }
