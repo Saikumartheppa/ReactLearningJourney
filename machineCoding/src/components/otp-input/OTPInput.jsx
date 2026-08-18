@@ -45,6 +45,7 @@ const OTPInput = ({ otpDigits }) => {
     }
     const newArr = [...inputArr];
     newArr[index] = value.slice(-1);
+    setOtpValidationError("");
     setInputArr(newArr);
     checkOTPComplete(newArr);
     value && refArr.current[index + 1]?.focus();
@@ -94,6 +95,7 @@ const OTPInput = ({ otpDigits }) => {
             inputMode="numeric"
             maxLength={1}
             disabled={isSubmitting}
+            autoComplete="one-time-code"
             value={input}
             ref={(input) => (refArr.current[index] = input)}
             onChange={(e) => handleOnChange(e.target.value, index)}
