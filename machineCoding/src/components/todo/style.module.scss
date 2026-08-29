@@ -47,7 +47,7 @@
     &__checkBox{
         cursor: pointer;
     }
-    &--deleteBtn{
+    &--deleteBtn , &__editBtn{
         padding: 8px 26px;
         border-radius: 18px;
         border: 1px solid black;
