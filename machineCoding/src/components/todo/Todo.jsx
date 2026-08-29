@@ -14,7 +14,7 @@ const Todo = () => {
       return;
     }
     const todoItem = {
-      id: todoList.length + 1,
+      id: crypto.randomUUID(),
       title: trimmedValue,
       isCompleted: false,
     };
@@ -52,6 +52,12 @@ const Todo = () => {
     setTodoList(updatedTodoList);
     setEditingTodoId(null);
   }
+  const fetchNumberOfActiveTodos = () => {
+     const activeTodos = todoList?.reduce((acc , todo ) => {
+       return !todo?.isCompleted ? acc + 1 : acc;
+     }, 0)
+     return activeTodos;
+  }
   return (
     <div className={styles["todo"]}>
       <h1>Todo App</h1>
@@ -60,6 +66,7 @@ const Todo = () => {
         handleInputField={handleInputField}
         handleAddTodoItem={handleAddTodoItem}
       />
+      <div className={styles['todo__count']}>Count : {fetchNumberOfActiveTodos()}</div>
       <TodoList
         todoList={todoList}
         handleCheckboxClick={handleCheckboxClick}
