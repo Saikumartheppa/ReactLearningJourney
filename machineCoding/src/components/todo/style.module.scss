@@ -1,64 +1,78 @@
-.todo{
-    text-align: center;
-    padding: 16px 0px;
+.todo {
+  text-align: center;
+  padding: 16px 0px;
+  border: 1px solid black;
+  width: 100vw;
+  &__input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0px;
+  }
+  &__input-field,
+  &__add {
+    font-size: medium;
     border: 1px solid black;
-    width: 100vw;
-    &__input-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        margin: 16px 0px;
+    border-radius: 8px;
+  }
+  &__input-field {
+    padding: 8px 10px;
+    width: 30%;
+    &:focus-within {
+      outline: none;
     }
-    &__input-field,
-    &__add{
-        font-size:medium;
-        border: 1px solid black;
-        border-radius: 8px;
+  }
+  &__add {
+    padding: 8px 26px;
+    cursor: pointer;
+    &:hover {
+      background-color: black;
+      color: white;
+      transition: all 0.2s ease-in-out;
     }
-    &__input-field{
-        padding: 8px 10px;
-        width: 30%;
-        &:focus-within{
-            outline: none;
-        }
+  }
+  &__filter-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0px 12px;
+  }
+  &__todoList {
+    height: 30vh;
+    overflow-y: auto;
+  }
+  &__todoItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0px;
+    font-size: large;
+  }
+  &__checkBox {
+    cursor: pointer;
+  }
+  &--deleteBtn,
+  &__editBtn,
+  &--filterBtn {
+    padding: 8px 26px;
+    border-radius: 18px;
+    border: 1px solid black;
+    cursor: pointer;
+    &:hover {
+      background-color: black;
+      color: white;
+      transition: all 0.2s ease-in-out;
     }
-    &__add{
-        padding: 8px 26px;
-        cursor: pointer;
-        &:hover{
-            background-color: black;
-            color: white;
-            transition: all 0.2s ease-in-out;
-        }
-    }
-    &__todoList{
-        height: 30vh;
-        overflow-y: auto;
-    }
-    &__todoItem{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        margin:10px 0px;
-        font-size: large; 
-    }
-    &__checkBox{
-        cursor: pointer;
-    }
-    &--deleteBtn , &__editBtn{
-        padding: 8px 26px;
-        border-radius: 18px;
-        border: 1px solid black;
-        cursor: pointer;
-        &:hover{
-            background-color: black;
-            color: white;
-            transition: all 0.2s ease-in-out;
-        }
-    }
-    &--title-completed{
-        text-decoration: line-through;
-    }
+  }
+  &--appliedFilter {
+      background-color: black;
+      color: white;
+      transition: all 0.2s ease-in-out;
+  }
+  &--title-completed {
+    text-decoration: line-through;
+  }
 }

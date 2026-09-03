@@ -1,10 +1,22 @@
-import { useState } from "react";
-import { TodoInput, TodoList } from "../todo";
+import {useState } from "react";
+import { TodoInput, TodoList, TodoFilters } from "../todo";
 import styles from "./style.module.scss";
 const Todo = () => {
   const [todoInputField, setTodoInputField] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [editingTodoId, setEditingTodoId] = useState(null);
+  const [filter, setFilter] = useState("All");
+  const getFilteredTodos = (filter) => {
+    switch (filter) {
+      case "Active":
+        return todoList.filter((todo) => !todo?.isCompleted);
+      case "Completed":
+        return todoList.filter((todo) => todo?.isCompleted);
+      default:
+        return todoList;
+    }
+  };
+  const filteredTodos = getFilteredTodos(filter);
   const handleInputField = (value) => {
     setTodoInputField(value);
   };
@@ -23,10 +35,9 @@ const Todo = () => {
   };
   const handleCheckboxClick = (toBeCompletedTodoId) => {
     const updatedList = todoList.map((todo) => {
-      if (todo.id === toBeCompletedTodoId) {
-        todo.isCompleted = !todo.isCompleted;
-      }
-      return todo;
+      return todo.id === toBeCompletedTodoId
+        ? { ...todo, isCompleted: !todo.isCompleted }
+        : todo;
     });
     setTodoList(updatedList);
   };
@@ -42,22 +53,23 @@ const Todo = () => {
   const handleCancelTodo = () => {
     setEditingTodoId(null);
   };
-  const handleSaveTodo = (toBeSavedTodoId , EditedValue) => {
+  const handleSaveTodo = (toBeSavedTodoId, EditedValue) => {
     const trimmedValue = EditedValue.trim();
-    if(!trimmedValue){
+    if (!trimmedValue) {
       return;
     }
-    const updatedTodoList = todoList.map((todo) => 
-      todo.id === toBeSavedTodoId ? {...todo , title : trimmedValue} : todo)
+    const updatedTodoList = todoList.map((todo) =>
+      todo.id === toBeSavedTodoId ? { ...todo, title: trimmedValue } : todo,
+    );
     setTodoList(updatedTodoList);
     setEditingTodoId(null);
-  }
+  };
   const fetchNumberOfActiveTodos = () => {
-     const activeTodos = todoList?.reduce((acc , todo ) => {
-       return !todo?.isCompleted ? acc + 1 : acc;
-     }, 0)
-     return activeTodos;
-  }
+    const activeTodos = todoList?.reduce((acc, todo) => {
+      return !todo?.isCompleted ? acc + 1 : acc;
+    }, 0);
+    return activeTodos;
+  };
   return (
     <div className={styles["todo"]}>
       <h1>Todo App</h1>
@@ -66,9 +78,12 @@ const Todo = () => {
         handleInputField={handleInputField}
         handleAddTodoItem={handleAddTodoItem}
       />
-      <div className={styles['todo__count']}>Count : {fetchNumberOfActiveTodos()}</div>
+      <div className={styles["todo__filter-container"]}>
+        <TodoFilters appliedFilter={filter} setFilter={setFilter} />
+      </div>
+      <span>Active Todo's : {fetchNumberOfActiveTodos()}</span>
       <TodoList
-        todoList={todoList}
+        todoList={filteredTodos}
         handleCheckboxClick={handleCheckboxClick}
         handleDeleteTodo={handleDeleteTodo}
         editingTodoId={editingTodoId}
